@@ -1,25 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
-
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    function validateInput(event) {
+        event.preventDefault();
+        const value = document.getElementById("inputField").value;
+        console.log(value);
+        let left = 0;
+        let right = value.length - 1;
+        while (left < right) {
+            if (value[left] !== value[right]) {
+                console.log("Not a palindrome");
+                return false;
+            }
+            left++;
+            right--;
+        }
+        console.log("It is a palindrome");
+        return true;
+    }
+
+    return (
+        <>
+            <form onSubmit={validateInput}>
+                <div className="App">
+                    <div>
+                        <label htmlFor="inputField">Name</label>
+                    </div>
+                    <div>
+                        <input className="validate" id="inputField" type="text" placeholder="Validate" />
+                    </div>
+                    <button className="submit" type="submit">Submit</button>
+                </div>
+            </form>
+        </>
+    );
 }
 
 export default App;
